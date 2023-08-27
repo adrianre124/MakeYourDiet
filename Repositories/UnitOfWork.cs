@@ -13,6 +13,7 @@ namespace MakeYourDiet.Repositories
         }
 
         public IUserRepository UserRepository => new UserRepository(_context);
+        public IProductRepository ProductRepository => new ProductRepository(_context);
 
         public async Task<bool> Complete()
         {
