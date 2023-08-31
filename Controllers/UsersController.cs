@@ -1,4 +1,4 @@
-using MakeYourDiet.Data;
+using AutoMapper;
 using MakeYourDiet.Interfaces;
 using MakeYourDiet.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +8,12 @@ namespace MakeYourDiet.Controllers
     public class UsersController : BaseApiController
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [HttpGet]

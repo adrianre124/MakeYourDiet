@@ -18,7 +18,7 @@ namespace MakeYourDiet.Services
             {
                 await _unitOfWork.ProductRepository.Add(product);
 
-                await _unitOfWork.Complete();
+                return await _unitOfWork.Complete();
             }
 
             return false;
@@ -34,7 +34,7 @@ namespace MakeYourDiet.Services
                 {
                     _unitOfWork.ProductRepository.Remove(product);
 
-                    await _unitOfWork.Complete();
+                    return await _unitOfWork.Complete();
                 }
             }
 
@@ -76,7 +76,7 @@ namespace MakeYourDiet.Services
 
                     _unitOfWork.ProductRepository.Update(updateProduct);
 
-                    await _unitOfWork.Complete();
+                    return await _unitOfWork.Complete();
                 }
             }
 

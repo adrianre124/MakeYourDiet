@@ -1,9 +1,11 @@
 using MakeYourDiet.Interfaces;
 using MakeYourDiet.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MakeYourDiet.Controllers
 {
+    [Authorize]
     public class ProductController : BaseApiController
     {
         private readonly IProductService _productService;

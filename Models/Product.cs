@@ -15,5 +15,8 @@ namespace MakeYourDiet.Models
         public int Carbons { get; set; }
         public int Proteins { get; set; }
         public int Weight { get; set; } = 100;
+
+        public int ProductCollectionId { get; set; }
+        public ProductCollection ProductCollection { get; set; } = null; 
     }
 }
