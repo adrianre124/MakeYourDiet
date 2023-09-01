@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MakeYourDiet.Interfaces;
 using MakeYourDiet.Models;
 
@@ -84,8 +80,6 @@ namespace MakeYourDiet.Services
                 var getUser = await _unitOfWork.UserRepository.GetById(user.Id);
                 if (getUser != null)
                 {
-                    getUser.UserName = user.UserName;
-                    getUser.Password = user.Password;
                     getUser.Created = user.Created;
                     getUser.Gender = user.Gender;
                     getUser.LastActive = user.LastActive;

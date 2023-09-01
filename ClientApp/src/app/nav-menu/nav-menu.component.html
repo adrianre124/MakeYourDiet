@@ -1,44 +1,55 @@
-<header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">MakeYourDiet</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" routerLink="" routerLinkActive="active">Make Your Diet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
-        </ul>
-      </div>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ng-container *ngIf="accountService.currentUser$ | async">
+        <li class="nav-item active">
+          <a class="nav-link">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item">Action</a>
+            <a class="dropdown-item">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
+        </li>
+      </ng-container>
     </div>
+
+    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <a class="dropdown-toggle text-light text-decoration-none ms-2" dropdownToggle>Welcome {{user.username}}</a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+            <a class="dropdown-item" routerLink="/user/edit">Edit Profile</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+    </div>
+
+    <form *ngIf="!(accountService.currentUser$ | async)" (ngSubmit)="login()" class="d-flex" autocomplete="off">
+        <input 
+            name="username"
+            [(ngModel)]="model.username"
+            class="form-control mr-sm-2" 
+            type="username" 
+            placeholder="Username" >
+        <input 
+            name="password"
+            [(ngModel)]="model.password"
+            class="form-control mr-sm-2" 
+            type="password" 
+            placeholder="Password" >
+        <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
+      </form>
   </nav>
-</header>
